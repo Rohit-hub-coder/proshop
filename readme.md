@@ -132,68 +132,53 @@ jane@email.com (Customer)
 
 
 
-T
 ## Architecture Overview
 
 ### System Architecture Diagram
-```text
-Browser / Client
-  ↓
-React Frontend (frontend/src)
-  ↓ REST API calls
-Express Server (backend/server.js)
-  ↓
-Authentication / Authorization
-  ↓
-User, Product, Order, Payment controllers
-  ↓
-MongoDB Atlas / Database
-  ↓
-Data persistence and session state
+```mermaid
+graph TB
+  Browser[Browser / Client] --> Frontend[React Frontend (frontend/src)]
+  Frontend --> Server[Express Server (backend/server.js)]
+  Server --> Auth[Authentication / Authorization]
+  Auth --> Controllers[User, Product, Order, Payment controllers]
+  Controllers --> Database[MongoDB Atlas / Database]
+  Database --> Persistence[Data persistence and session state]
 ```
 
 ### User Checkout & Payment Sequence Diagram
-```text
-Customer initiates checkout
-  ↓
-Frontend validates cart and shipping details
-  ↓
-Frontend sends POST /api/orders
-  ↓
-Backend creates order and calculates totals
-  ↓
-Backend returns order summary
-  ↓
-Frontend redirects user to PayPal / payment processor
-  ↓
-Payment provider returns confirmation
-  ↓
-Frontend sends payment status update to backend
-  ↓
-Backend marks order as paid and stores transaction data
-  ↓
-Customer receives confirmation and order history updates
+```mermaid
+sequenceDiagram
+  participant Customer
+  participant Frontend
+  participant Backend
+  participant PayPal
+  Customer->>Frontend: Initiates checkout
+  Frontend->>Frontend: Validates cart and shipping details
+  Frontend->>Backend: POST /api/orders
+  Backend->>Backend: Create order and calculate totals
+  Backend-->>Frontend: Order summary
+  Frontend->>PayPal: Redirect to PayPal/payment processor
+  PayPal-->>Frontend: Payment confirmation
+  Frontend->>Backend: Send payment status update
+  Backend->>Backend: Mark order as paid and store transaction data
+  Backend-->>Customer: Confirmation and order history updated
 ```
 
 ### JWT Authentication Sequence Diagram
-```text
-User submits login credentials
-  ↓
-Frontend sends POST /api/users/login
-  ↓
-Backend validates credentials against user model
-  ↓
-Backend signs JWT with JWT_SECRET
-  ↓
-Backend returns JWT to frontend
-  ↓
-Frontend stores token securely (localStorage / cookie)
-  ↓
-Frontend sends JWT in Authorization header for protected requests
-  ↓
-Backend middleware verifies token and authorizes the request
-  ↓
-Protected routes return user-specific data or admin access
+```mermaid
+sequenceDiagram
+  participant User
+  participant Frontend
+  participant Backend
+  User->>Frontend: Submit login credentials
+  Frontend->>Backend: POST /api/users/login
+  Backend->>Backend: Validate credentials
+  Backend->>Backend: Sign JWT with JWT_SECRET
+  Backend-->>Frontend: Return JWT
+  Frontend->>Frontend: Store token securely
+  Frontend->>Backend: Request protected route with Authorization header
+  Backend->>Backend: Verify JWT and authorize request
+  Backend-->>Frontend: Return user-specific or admin data
 ```
 
 ---
