@@ -133,3 +133,67 @@ jane@email.com (Customer)
 
 
 T
+## Architecture Overview
+
+### System Architecture Diagram
+```text
+Browser / Client
+  ↓
+React Frontend (frontend/src)
+  ↓ REST API calls
+Express Server (backend/server.js)
+  ↓
+Authentication / Authorization
+  ↓
+User, Product, Order, Payment controllers
+  ↓
+MongoDB Atlas / Database
+  ↓
+Data persistence and session state
+```
+
+### User Checkout & Payment Sequence Diagram
+```text
+Customer initiates checkout
+  ↓
+Frontend validates cart and shipping details
+  ↓
+Frontend sends POST /api/orders
+  ↓
+Backend creates order and calculates totals
+  ↓
+Backend returns order summary
+  ↓
+Frontend redirects user to PayPal / payment processor
+  ↓
+Payment provider returns confirmation
+  ↓
+Frontend sends payment status update to backend
+  ↓
+Backend marks order as paid and stores transaction data
+  ↓
+Customer receives confirmation and order history updates
+```
+
+### JWT Authentication Sequence Diagram
+```text
+User submits login credentials
+  ↓
+Frontend sends POST /api/users/login
+  ↓
+Backend validates credentials against user model
+  ↓
+Backend signs JWT with JWT_SECRET
+  ↓
+Backend returns JWT to frontend
+  ↓
+Frontend stores token securely (localStorage / cookie)
+  ↓
+Frontend sends JWT in Authorization header for protected requests
+  ↓
+Backend middleware verifies token and authorizes the request
+  ↓
+Protected routes return user-specific data or admin access
+```
+
+---
