@@ -131,19 +131,21 @@ jane@email.com (Customer)
 ---
 
 
-
 ## Architecture Overview
 
 ### System Architecture Diagram
+
 ```mermaid
 graph TB
-  Browser[Browser / Client] --> Frontend[React Frontend (frontend/src)]
-  Frontend --> Server[Express Server (backend/server.js)]
-  Server --> Auth[Authentication / Authorization]
-  Auth --> Controllers[User, Product, Order, Payment controllers]
-  Controllers --> Database[MongoDB Atlas / Database]
-  Database --> Persistence[Data persistence and session state]
+    Browser[Browser / Client] --> Frontend[React Frontend - frontend/src]
+    Frontend --> Server[Express Server - backend/server.js]
+    Server --> Auth[Authentication / Authorization]
+    Auth --> Controllers[User, Product, Order, Payment controllers]
+    Controllers --> Database[MongoDB Atlas / Database]
+    Database --> Persistence[Data persistence and session state]
 ```
+
+---
 
 ### User Checkout & Payment Sequence Diagram
 ```mermaid
