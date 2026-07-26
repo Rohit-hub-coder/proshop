@@ -1,0 +1,37 @@
+{
+  "name": "proshop-v2",
+  "version": "1.0.0",
+  "description": "eCommerce application built with the MERN Stack",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder.js -d"
+  },
+  "author": "Sameer Ansari",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.8.3",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "multer": "^1.4.5-lts.1",
+    "react-icons": "^5.4.0",
+    "react-script": "^2.0.5",
+    "react-toastify": "^11.0.2",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
+  }
+}
