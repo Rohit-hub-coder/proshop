@@ -334,7 +334,7 @@ npm run data:destroy
 
 ## Credits & Based On
 
-This project was built by **Rohit Kumar** following the curriculum and initial project structure from the **[MERN Stack From Scratch | eCommerce Platform](https://www.udemy.com/course/mern-ecommerce/)** course by **Brad Traversy** (Traversy Media). The original course template is MIT-licensed.
+This project was built following **[Brad Traversy's MERN eCommerce course](https://github.com/bradtraversy/proshop-v2)** (Traversy Media). The original course template is MIT-licensed.
 
 Significant additions and modifications made during development include:
 - Extended PayPal integration with server-side `verifyPayPalPayment` and `checkIfNewTransaction` deduplication logic.
